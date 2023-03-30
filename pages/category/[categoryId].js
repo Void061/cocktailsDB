@@ -71,12 +71,14 @@ export async function getStaticPaths(context){
 export async function getStaticProps(context){
     const { params } = context;
     
+    
+
     let categoryId = decodeCategory(params.categoryId);
     
     const categorie = await getAllCategories();
     const drinks = await getCocktailsByCategory(categoryId);
 
-
+    try{
     
     return{
         props:{
@@ -87,6 +89,13 @@ export async function getStaticProps(context){
         },
         revalidate: 10,
     }
+
+}
+catch(e){
+    return{
+        notFound: true,
+    }
+}
 
 
     

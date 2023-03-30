@@ -27,6 +27,7 @@ const FormLogin = (props) => {
             setAvatar("");
         }
         else{
+            localStorage.setItem('avatar', avatar);
             setAvatar(avatar);
         }
         
@@ -46,6 +47,8 @@ const FormLogin = (props) => {
         }
           
         else{
+            localStorage.setItem('username', filteredUsername);
+          
             setUsername(filteredUsername);
         }
         

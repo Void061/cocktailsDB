@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { encodeCategory } from '../../utils/api';
+import { encodeCategory, decodeCategory } from '../../utils/api';
 
 const SliderCategory = (props) => {
          const { loading, currentCat } = props
@@ -29,7 +29,7 @@ const SliderCategory = (props) => {
             <ul className="flex justify-center flex-wrap gap-4">
                 {props.categories.map((item, index) => (
                    
-                    currentCat != item.strCategory ?
+                    decodeCategory(currentCat) != item.strCategory ?
                     <Link onClick={() => handleChangeCat(encodeCategory(item.strCategory))} href={'/category/'+ encodeCategory(item.strCategory)} key={index} scroll={false}>
                         <li className="transition-all hover:bg-primary hover:text-secondary text-[20px] font-semibold px-6 cursor-pointer rounded-[25px] text-primary bg-secondary" >{item.strCategory}</li>
                         
