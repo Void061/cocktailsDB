@@ -11,15 +11,27 @@ function MyApp({ Component, pageProps }) {
 
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [favorites, setFavorites] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   
   useEffect(() => {
+    
     if(router.pathname === '/' || router.pathname === '/category'){ router.push('/category/Ordinary%20Drink')}
 
     const us_local = localStorage.getItem('username')  == null ? "" : localStorage.getItem('username');
     const av_local = localStorage.getItem('avatar')  == null ? "" : localStorage.getItem('avatar');
+    
+    if(localStorage.getItem('favorites') == undefined || localStorage.getItem('favorites') == null || localStorage.getItem('favorites') == ""){
+      setFavorites([])
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+    else{
+      let favs = JSON.parse(localStorage.getItem('favorites'));
+      setFavorites([...favs])
+    }
 
     setUsername(us_local);
     setAvatar(av_local);
@@ -40,7 +52,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <Layout currentAvatar={avatar}>
+    <Layout favorites={favorites} setFavorites={setFavorites} currentAvatar={avatar}>
         <Component {...pageProps} />
     </Layout>
     

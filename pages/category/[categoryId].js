@@ -7,14 +7,18 @@ const CategoryPage = (props) => {
 
     const [loading, setLoading] = useState(props.loading);
     const [currentCat, setCurrentCat] = useState();
+    
 
-
+    
+    
+    
 
    useEffect(() => {
        if(props.currentCat && !currentCat){
            setTimeout(() => {
                 setCurrentCat(props.currentCat);
            }, 500)
+           
            
        }
    },[currentCat])
@@ -45,7 +49,7 @@ const CategoryPage = (props) => {
             
                
             <Section>
-                <ListCocktails loading={loading} cocktails={props.cocktails}/>
+                <ListCocktails setFavorites={props.setFavorites} favorites={props.favorites}  loading={loading} cocktails={props.cocktails}/>
             </Section>
             
         </div>
