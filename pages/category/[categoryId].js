@@ -2,27 +2,52 @@ import { getAllCategories, getCocktailsByCategory, decodeCategory } from '../../
 import SliderCategory from '../../components/category/slider-category'
 import Section from '../../components/ui/section';
 import ListCocktails from '../../components/cocktails/list-cocktails';
+import { useState, useEffect } from 'react';
 const CategoryPage = (props) => {
 
-    
+    const [loading, setLoading] = useState(props.loading);
+    const [currentCat, setCurrentCat] = useState();
 
 
-    if(!props.categorie || props.categorie.length === 0){
+
+   useEffect(() => {
+       if(props.currentCat && !currentCat){
+           setTimeout(() => {
+                setCurrentCat(props.currentCat);
+           }, 500)
+           
+       }
+   },[currentCat])
+
+
+    if(!props.categorie || props.categorie.length === 0 || !currentCat){
         return(
-            <p>Loading...</p>
+            <div>
+                <Section>
+                <SliderCategory setCurrentCat={setCurrentCat} currentCat={currentCat} setLoading={setLoading} loading={true} categories={[1,2,3,4,5,6,7,8,9,10,11]} />
+            </Section>
+            
+               
+            <Section>
+                <ListCocktails loading={true} cocktails={[1,2,3,4,5,6,7,8,9,10,11,12,13]}/>
+            </Section>
+            </div>
         )
     }
 
     return(
         <div>
+            
            
             <Section>
-                <SliderCategory categories={props.categorie} />
+                <SliderCategory setCurrentCat={setCurrentCat} currentCat={currentCat} setLoading={setLoading} categories={props.categorie} />
             </Section>
-
+            
+               
             <Section>
-                <ListCocktails cocktails={props.cocktails}/>
+                <ListCocktails loading={loading} cocktails={props.cocktails}/>
             </Section>
+            
         </div>
     )
 }
@@ -47,15 +72,18 @@ export async function getStaticProps(context){
     const { params } = context;
     
     let categoryId = decodeCategory(params.categoryId);
-    console.log(categoryId);
+    
     const categorie = await getAllCategories();
     const drinks = await getCocktailsByCategory(categoryId);
+
 
     
     return{
         props:{
             categorie: categorie,
             cocktails: drinks,
+            loading: false,
+            currentCat: decodeCategory(categoryId),
         },
         revalidate: 10,
     }

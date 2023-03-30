@@ -5,6 +5,17 @@ const CocktailCard = (props) =>{
 
     const { name, image } = props;
 
+
+    if(props.loading){
+        return(
+           
+                <div  className=" animate-pulse  delay-100 bg-primary relative p-8 rounded-[10px] min-h-[300px] flex w-[300px] h-[300px]">            
+                </div>
+   
+
+                
+        )
+    }
     return(
         <div style={{ backgroundImage: 'url('+image+')', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover'}} className=" relative p-8 rounded-[10px] min-h-[300px] flex w-[300px] h-[300px]">            
                 <div className="absolute top-0 left-0 bottom-0 right-0 bg-[#201e1e82] rounded-[10px]"></div>

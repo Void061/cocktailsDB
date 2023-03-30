@@ -1,11 +1,11 @@
 import Header from "../header/header"
 
 
-const Layout = ({children}) => {
+const Layout = (props) => {
     return(
         <div>
-            <Header />
-            {children}
+            <Header currentAvatar={props.currentAvatar} />
+            {props.children}
         </div>
     )
 }

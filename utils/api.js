@@ -17,13 +17,13 @@ export async function getCocktailsByCategory(cat){
 
 export function encodeCategory(string){
 
-    let code = string.replace("/", "-");
+    let code = string.replace("/", "%2F");
 
     return code;
 }
 
 export function decodeCategory(string){
-    let encode = string.replace("-", "/");
-
+    let encode = string.replace("%2F", "/");
+    encode = encode.replace("%20", "");
     return encode;
 }

@@ -8,7 +8,7 @@ const Header = (props) => {
             <div className="max-w-[1200px] p-4 mx-auto">
                <div className="flex">
                     <div className="flex-1 flex justify-end">
-                        <Avatar />
+                        <Avatar currentAvatar={props.currentAvatar}/>
                     </div>
                </div>
             </div>
