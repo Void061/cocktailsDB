@@ -56,7 +56,7 @@ const FormLogin = (props) => {
     return(
         <form className="max-w-[300px] md:max-w-[450px]  m-auto flex flex-col gap-4">
             <h2 className="text-[white] pb-[40px]">Seleziona un avatar</h2>
-            <div className="flex flex-wrap pb-[60px] gap-8 justify-center">
+            <div className="flex flex-wrap pb-[60px] gap-9 md:gap-12 justify-center">
                 {
                     avatars.map((item, index) => (
                         <div onClick={() => handleAvatars(item)} key={index} className={currentAvatar == item ? "border-2 border-secondary scale-[1.5] noselect cursor-pointer rounded-[50%] bg-[white] flex items-center justify-center p-4 transition-all" : "border-2 border-[transparent] noselect cursor-pointer rounded-[50%] bg-[white] flex items-center justify-center p-4 transition-all hover:scale-[1.3]"}>
