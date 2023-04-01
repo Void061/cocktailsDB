@@ -5,7 +5,7 @@ const CocktailCard = (props) =>{
 
     const { name, image, favorites, setFavorites  } = props;
 
-   
+    console.log(1);
 
     function handleFavorites(){
       
