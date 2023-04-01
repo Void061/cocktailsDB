@@ -15,7 +15,7 @@ const CocktailCard = (props) =>{
         }
 
         
-        //let current_favorites = JSON.parse(localStorage.getItem('favorites'));
+        
        
         let current_favorites = favorites
       
@@ -31,7 +31,7 @@ const CocktailCard = (props) =>{
             setFavorites([...current_favorites]);
         }
 
-        console.log(localStorage.getItem('favorites'))
+        
         
         
     }
